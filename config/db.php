@@ -2,7 +2,7 @@
 // Kunin ang mga configuration mula sa Environment Variables
 // Ang mga ito ay ise-set natin sa Cloud Run console
 $host     = getenv('DB_HOST') ?: 'localhost'; 
-$dbname   = getenv('DB_NAME') ?: 'gso_database';
+$dbname   = getenv('DB_NAME') ?: 'gso_db';
 $username = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASS') ?: 'sept2904'; 
 
