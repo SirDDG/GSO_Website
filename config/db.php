@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "gso_database";
+$dbname = "gso_db";
 $username = "root";
 $password = "";
 
