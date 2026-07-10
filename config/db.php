@@ -1,24 +1,25 @@
 <?php
 // Kunin ang mga configuration mula sa Environment Variables
-// Ang mga ito ay ise-set natin sa Cloud Run console
 $host     = getenv('DB_HOST') ?: 'localhost'; 
-$dbname   = getenv('DB_NAME') ?: 'gso_db';
+$dbname   = getenv('DB_NAME') ?: 'gso_database'; // Siguraduhing 'gso_database' ito kung ito ang pangalan sa Cloud SQL
 $username = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASS') ?: 'sept2904'; 
 
 try {
-    // Kung tayo ay nasa Cloud Run, gagamit tayo ng unix_socket
-    // Ang DB_HOST sa Cloud Run ay karaniwang: /cloudsql/CONNECTION_NAME
+    // Kung ang host ay nagsisimula sa /cloudsql/, gamitin ang unix_socket
     if (strpos($host, '/cloudsql/') === 0) {
+        // TAMA: unix_socket ang gamit, walang 'host' sa DSN
         $dsn = "mysql:unix_socket=$host;dbname=$dbname;charset=utf8mb4";
     } else {
+        // TAMA: Para sa XAMPP/Local, gamitin ang host
         $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
     }
 
     $pdo = new PDO($dsn, $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    // Para sa debugging: huwag i-display ang buong error sa live site kung maaari
+    // Pakitanggal ang $e->getMessage() sa production para safe, 
+    // pero panatilihin muna habang nag-aayos tayo ng error.
     die("Database connection failed: " . $e->getMessage());
 }
 
