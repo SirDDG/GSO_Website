@@ -4,7 +4,7 @@
 $host     = getenv('DB_HOST') ?: 'localhost'; 
 $dbname   = getenv('DB_NAME') ?: 'gso_database';
 $username = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASS') ?: ''; 
+$password = getenv('DB_PASS') ?: 'sept2904'; 
 
 try {
     // Kung tayo ay nasa Cloud Run, gagamit tayo ng unix_socket
