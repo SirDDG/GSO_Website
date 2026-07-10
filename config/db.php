@@ -1,7 +1,7 @@
 <?php
 // Kunin ang mga configuration mula sa Environment Variables
 $host     = getenv('DB_HOST') ?: 'localhost'; 
-$dbname   = getenv('DB_NAME') ?: 'gso_database'; // Siguraduhing 'gso_database' ito kung ito ang pangalan sa Cloud SQL
+$dbname   = getenv('DB_NAME') ?: 'gso_db'; // Siguraduhing 'gso_database' ito kung ito ang pangalan sa Cloud SQL
 $username = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASS') ?: 'sept2904'; 
 
